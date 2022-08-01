@@ -45,6 +45,7 @@
         --boxWidth: 200px;
         --connectorWidth: calc(var(--boxWidth) * 0.6);
         --crossWidth: calc(var(--boxWidth) * 0.3);
+        --topStrokeColor: navy;
       }
 
       .wrapper {
@@ -82,9 +83,9 @@
       #round {
         transform-box: fill-box;
         transform-origin: center;
-        transform: rotate(90deg);
-        stroke-dasharray: 116.25531768798828px;
-        stroke-dashoffset: 116.25531768798828px;
+        transform: rotate(180deg);
+        stroke-dasharray: 119.39730072021484px;
+        stroke-dashoffset: 119.39730072021484px;
         animation: strokeIn var(--roundIn) linear var(--roundInDelay) forwards;
       }
 
@@ -139,6 +140,7 @@
         aspect-ratio: 1 /1;
         background-color: aliceblue;
         position: relative;
+        border-radius: 5%;
       }
 
       .left > .currencyDiv,
@@ -172,6 +174,50 @@
         place-items: center;
         aspect-ratio: 1 /1;
       }
+
+      #top-stroke {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(180deg);
+        stroke-dasharray: 119.39730072021484px;
+        stroke-dashoffset: 119.39730072021484px;
+      }
+
+      .crossBtn:hover #top-stroke {
+        animation: strokeIn calc(var(--roundIn) * 0.5) linear forwards;
+      }
+
+      .crossBtn:hover #round {
+        stroke: transparent;
+      }
+
+      #cross-left,
+      #cross-right {
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      .crossBtn:hover #cross-left {
+        animation: leftBar calc(var(--roundIn) * 0.5) linear forwards;
+      }
+
+      .crossBtn:hover #cross-right {
+        animation: rightBar calc(var(--roundIn) * 0.5) linear forwards;
+      }
+
+      @keyframes leftBar {
+        100% {
+          stroke: var(--topStrokeColor);
+          transform: rotate(135deg);
+        }
+      }
+
+      @keyframes rightBar {
+        100% {
+          stroke: var(--topStrokeColor);
+          transform: rotate(45deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -179,6 +225,7 @@
       <div class="wrapper">
         <div class="left">
           <p class="currencyDiv">$15</p>
+
           <svg
             width="100%"
             min-height="0"
@@ -188,10 +235,11 @@
           >
             <path
               id="left-box-top"
-              d="M0.5 51.8125V1H100.5V50.6719"
+              d="M0.5 51.8125V6C0.5 3.23858 2.73858 1 5.5 1H95.5C98.2614 1 100.5 3.23858 100.5 6V51.8125"
               stroke="var(--strokeColor)"
             />
           </svg>
+
           <svg
             width="100%"
             min-height="0"
@@ -201,7 +249,7 @@
           >
             <path
               id="left-box-bottom"
-              d="M0.5 0.5V52H100.5V1.29688"
+              d="M0.5 0.5V47C0.5 49.7614 2.73858 52 5.5 52H95.5C98.2614 52 100.5 49.7614 100.5 47V1.29688"
               stroke="var(--strokeColor)"
             />
           </svg>
@@ -227,20 +275,32 @@
           <svg
             width="100%"
             min-height="0"
-            viewBox="0 0 39 38"
+            viewBox="0 0 39 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g id="reset-btn">
               <path
                 id="round"
-                d="M38 19C38 23.5609 36.3502 27.7352 33.6141 30.9606C30.2199 34.9619 25.1566 37.5 19.5 37.5C9.28273 37.5 1 29.2173 1 19C1 8.78273 9.28273 0.5 19.5 0.5C29.7173 0.5 38 8.78273 38 19Z"
+                d="M38.5 20C38.5 24.6838 36.8052 28.9717 33.9954 32.284C30.5102 36.3925 25.3096 39 19.5 39C9.00659 39 0.5 30.4934 0.5 20C0.5 9.50659 9.00659 1 19.5 1C29.9934 1 38.5 9.50659 38.5 20Z"
                 stroke="var(--strokeColor)"
               />
+              <g id="cross">
+                <path
+                  id="cross-left"
+                  d="M15.2574 15.7574L23.7426 24.2427"
+                  stroke="var(--strokeColor)"
+                />
+                <path
+                  id="cross-right"
+                  d="M23.7426 15.7574L15.2574 24.2427"
+                  stroke="var(--strokeColor)"
+                />
+              </g>
               <path
-                id="cross"
-                d="M19.5 13V25M13.5 19L25.5 19"
-                stroke="var(--strokeColor)"
+                id="top-stroke"
+                d="M38.5 20C38.5 24.6838 36.8052 28.9717 33.9954 32.284C30.5102 36.3925 25.3096 39 19.5 39C9.00659 39 0.5 30.4934 0.5 20C0.5 9.50659 9.00659 1 19.5 1C29.9934 1 38.5 9.50659 38.5 20Z"
+                stroke="var(--topStrokeColor)"
               />
             </g>
           </svg>
@@ -264,6 +324,7 @@
 
         <div class="right">
           <p class="currencyDiv">€10</p>
+
           <svg
             width="100%"
             min-height="0"
@@ -273,25 +334,40 @@
           >
             <path
               id="right-box-top"
-              d="M0.5 51.8125V1H100.5V50.6719"
+              d="M0.5 51.8125V6C0.5 3.23858 2.73858 1 5.5 1H95.5C98.2614 1 100.5 3.23858 100.5 6V51.8125"
               stroke="var(--strokeColor)"
             />
           </svg>
+
           <svg
             width="100%"
             min-height="0"
-            viewBox="0 0 101 53"
+            viewBox="0 0 101 52"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               id="right-box-bottom"
-              d="M0.5 0.5V52H100.5V1.29688"
+              d="M0.5 0.296875V46C0.5 48.7614 2.73858 51 5.5 51H95.5C98.2614 51 100.5 48.7614 100.5 46V0.296875"
               stroke="var(--strokeColor)"
             />
           </svg>
         </div>
       </div>
     </div>
+
+    <script>
+      // const introText = document.querySelectorAll("#homeStroked path");
+
+      // for (let i = 0; i < introText.length; i++) {
+      //   console.log(`letter ${i} is ${introText[i].getTotalLength()}`);
+      // }
+
+      const introText = document.querySelectorAll("#reset-btn path");
+
+      for (let i = 0; i < introText.length; i++) {
+        console.log(`letter ${i} is ${introText[i].getTotalLength()}`);
+      }
+    </script>
   </body>
 </html>
