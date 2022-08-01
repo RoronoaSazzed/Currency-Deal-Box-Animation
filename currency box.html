@@ -26,13 +26,6 @@
         place-items: center;
       }
 
-      .wrapper {
-        width: 1000px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
       :root {
         --leftIn: 2s;
         --leftConnectorDelay: var(--leftIn);
@@ -48,6 +41,17 @@
         --rightInDelay: calc(
           var(--rightConnectorDelay) + var(--rightConnectorIn)
         );
+        --strokeColor: skyblue;
+        --boxWidth: 200px;
+        --connectorWidth: calc(var(--boxWidth) * 0.6);
+        --crossWidth: calc(var(--boxWidth) * 0.3);
+      }
+
+      .wrapper {
+        width: 1000px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       #left-box-top {
@@ -126,55 +130,167 @@
       #reset-btn:hover {
         cursor: pointer;
       }
+
+      .left,
+      .right {
+        display: grid;
+        place-items: center;
+        width: var(--boxWidth);
+        aspect-ratio: 1 /1;
+        background-color: aliceblue;
+        position: relative;
+      }
+
+      .left > .currencyDiv,
+      .right > .currencyDiv {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 35px;
+      }
+
+      .left-c,
+      .right-c {
+        width: var(--connectorWidth);
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1 /1;
+      }
+
+      .left-c {
+        margin-right: 5px;
+      }
+
+      .right-c {
+        margin-left: 5px;
+      }
+
+      .crossBtn {
+        width: var(--crossWidth);
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1 /1;
+      }
     </style>
   </head>
   <body>
     <div class="parentDiv">
       <div class="wrapper">
-        <svg
-          width="100%"
-          min-height="0"
-          viewBox="0 0 423 150"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="Test">
+        <div class="left">
+          <p class="currencyDiv">$15</p>
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 101 52"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
-              id="right-box-bottom"
-              d="M292.5 73.5V125H392.5V74.2969"
-              stroke="#00FF00"
+              id="left-box-top"
+              d="M0.5 51.8125V1H100.5V50.6719"
+              stroke="var(--strokeColor)"
             />
+          </svg>
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 101 53"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
-              id="right-box-top"
-              d="M292.5 75.8125V25H392.5V74.6719"
-              stroke="#00FF00"
+              id="left-box-bottom"
+              d="M0.5 0.5V52H100.5V1.29688"
+              stroke="var(--strokeColor)"
             />
-            <path id="connector-right" d="M232.5 75L293 75" stroke="#00FF00" />
+          </svg>
+        </div>
+
+        <div class="left-c">
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 61 2"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="connector-left"
+              d="M0 1L60.5 0.999995"
+              stroke="var(--strokeColor)"
+            />
+          </svg>
+        </div>
+
+        <div class="crossBtn">
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 39 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <g id="reset-btn">
               <path
                 id="round"
-                d="M211.5 93.5C201.283 93.5 193 85.2173 193 75C193 64.7827 201.283 56.5 211.5 56.5C221.717 56.5 230 64.7827 230 75C230 79.5609 228.35 83.7352 225.614 86.9606C222.22 90.9619 217.157 93.5 211.5 93.5Z"
-                stroke="#00FF00"
+                d="M38 19C38 23.5609 36.3502 27.7352 33.6141 30.9606C30.2199 34.9619 25.1566 37.5 19.5 37.5C9.28273 37.5 1 29.2173 1 19C1 8.78273 9.28273 0.5 19.5 0.5C29.7173 0.5 38 8.78273 38 19Z"
+                stroke="var(--strokeColor)"
               />
               <path
                 id="cross"
-                d="M211.5 69V81M205.5 75L217.5 75"
-                stroke="#00FF00"
+                d="M19.5 13V25M13.5 19L25.5 19"
+                stroke="var(--strokeColor)"
               />
             </g>
-            <path id="connector-left" d="M130 75L190.5 75" stroke="#00FF00" />
+          </svg>
+        </div>
+
+        <div class="right-c">
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 61 2"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
-              id="left-box-bottom"
-              d="M30.5 73.5V125H130.5V74.2969"
-              stroke="#00FF00"
+              id="connector-right"
+              d="M0.5 1L61 0.999995"
+              stroke="var(--strokeColor)"
             />
+          </svg>
+        </div>
+
+        <div class="right">
+          <p class="currencyDiv">€10</p>
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 101 52"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
-              id="left-box-top"
-              d="M30.5 75.8125V25H130.5V74.6719"
-              stroke="#00FF00"
+              id="right-box-top"
+              d="M0.5 51.8125V1H100.5V50.6719"
+              stroke="var(--strokeColor)"
             />
-          </g>
-        </svg>
+          </svg>
+          <svg
+            width="100%"
+            min-height="0"
+            viewBox="0 0 101 53"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="right-box-bottom"
+              d="M0.5 0.5V52H100.5V1.29688"
+              stroke="var(--strokeColor)"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </body>
