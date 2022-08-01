@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <title>Test</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .parentDiv {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      .wrapper {
+        width: 1000px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      :root {
+        --leftIn: 2s;
+        --leftConnectorDelay: var(--leftIn);
+        --leftConnectorIn: calc(var(--leftIn) * 0.75);
+        --roundIn: calc(var(--leftIn) * 0.5);
+        --roundInDelay: calc(var(--leftIn) + var(--leftConnectorIn));
+        --crossIn: calc(var(--leftIn) * 0.25);
+        --crossInDelay: calc(var(--crossIn) * 0.5);
+        --crossInWholeDelay: calc(var(--roundInDelay) + var(--crossInDelay));
+        --rightIn: var(--leftIn);
+        --rightConnectorIn: calc(var(--rightIn) * 0.75);
+        --rightConnectorDelay: calc(var(--crossIn) + var(--crossInWholeDelay));
+        --rightInDelay: calc(
+          var(--rightConnectorDelay) + var(--rightConnectorIn)
+        );
+      }
+
+      #left-box-top {
+        stroke-dasharray: 200.48440551757812px;
+        stroke-dashoffset: 200.48440551757812px;
+        animation: strokeIn var(--leftIn) linear forwards;
+      }
+
+      #left-box-bottom {
+        stroke-dasharray: 202.20309448242188px;
+        stroke-dashoffset: 202.20309448242188px;
+        animation: strokeIn var(--leftIn) linear forwards;
+      }
+
+      @keyframes strokeIn {
+        100% {
+          stroke-dashoffset: 0px;
+        }
+      }
+
+      #connector-left {
+        stroke-dasharray: 60.5px;
+        stroke-dashoffset: 60.5px;
+        animation: strokeIn var(--leftConnectorIn) linear
+          var(--leftConnectorDelay) forwards;
+      }
+
+      #round {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(90deg);
+        stroke-dasharray: 116.25531768798828px;
+        stroke-dashoffset: 116.25531768798828px;
+        animation: strokeIn var(--roundIn) linear var(--roundInDelay) forwards;
+      }
+
+      #cross {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(0deg) scale(0);
+        animation: scaleIn var(--crossIn) linear var(--crossInWholeDelay)
+          forwards;
+      }
+
+      @keyframes scaleIn {
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+
+      #connector-right {
+        stroke-dasharray: 60.5px;
+        stroke-dashoffset: 60.5px;
+        animation: strokeIn var(--rightConnectorIn) linear
+          var(--rightConnectorDelay) forwards;
+      }
+
+      #right-box-top {
+        stroke-dasharray: 200.48440551757812px;
+        stroke-dashoffset: 200.48440551757812px;
+        animation: strokeIn var(--rightIn) linear var(--rightInDelay) forwards;
+      }
+
+      #right-box-bottom {
+        stroke-dasharray: 202.20309448242188px;
+        stroke-dashoffset: 202.20309448242188px;
+        animation: strokeIn var(--rightIn) linear var(--rightInDelay) forwards;
+      }
+
+      #reset-btn {
+        transform-box: fill-box;
+        transform-origin: center;
+        fill: transparent;
+      }
+
+      #reset-btn:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parentDiv">
+      <div class="wrapper">
+        <svg
+          width="100%"
+          min-height="0"
+          viewBox="0 0 423 150"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Test">
+            <path
+              id="right-box-bottom"
+              d="M292.5 73.5V125H392.5V74.2969"
+              stroke="#00FF00"
+            />
+            <path
+              id="right-box-top"
+              d="M292.5 75.8125V25H392.5V74.6719"
+              stroke="#00FF00"
+            />
+            <path id="connector-right" d="M232.5 75L293 75" stroke="#00FF00" />
+            <g id="reset-btn">
+              <path
+                id="round"
+                d="M211.5 93.5C201.283 93.5 193 85.2173 193 75C193 64.7827 201.283 56.5 211.5 56.5C221.717 56.5 230 64.7827 230 75C230 79.5609 228.35 83.7352 225.614 86.9606C222.22 90.9619 217.157 93.5 211.5 93.5Z"
+                stroke="#00FF00"
+              />
+              <path
+                id="cross"
+                d="M211.5 69V81M205.5 75L217.5 75"
+                stroke="#00FF00"
+              />
+            </g>
+            <path id="connector-left" d="M130 75L190.5 75" stroke="#00FF00" />
+            <path
+              id="left-box-bottom"
+              d="M30.5 73.5V125H130.5V74.2969"
+              stroke="#00FF00"
+            />
+            <path
+              id="left-box-top"
+              d="M30.5 75.8125V25H130.5V74.6719"
+              stroke="#00FF00"
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </body>
+</html>
