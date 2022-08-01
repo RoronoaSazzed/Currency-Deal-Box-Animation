@@ -179,12 +179,14 @@
         transform-box: fill-box;
         transform-origin: center;
         transform: rotate(180deg);
+        transition: all 0.5s;
         stroke-dasharray: 119.39730072021484px;
         stroke-dashoffset: 119.39730072021484px;
       }
 
       .crossBtn:hover #top-stroke {
-        animation: strokeIn calc(var(--roundIn) * 0.5) linear forwards;
+        stroke-dashoffset: 0px;
+        transform: rotate(270deg);
       }
 
       .crossBtn:hover #round {
@@ -195,28 +197,17 @@
       #cross-right {
         transform-box: fill-box;
         transform-origin: center;
+        transition: all 0.5s;
       }
 
       .crossBtn:hover #cross-left {
-        animation: leftBar calc(var(--roundIn) * 0.5) linear forwards;
+        transform: rotate(135deg);
+        stroke: var(--topStrokeColor);
       }
 
       .crossBtn:hover #cross-right {
-        animation: rightBar calc(var(--roundIn) * 0.5) linear forwards;
-      }
-
-      @keyframes leftBar {
-        100% {
-          stroke: var(--topStrokeColor);
-          transform: rotate(135deg);
-        }
-      }
-
-      @keyframes rightBar {
-        100% {
-          stroke: var(--topStrokeColor);
-          transform: rotate(45deg);
-        }
+        transform: rotate(45deg);
+        stroke: var(--topStrokeColor);
       }
     </style>
   </head>
